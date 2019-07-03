@@ -13,15 +13,12 @@
     <header>
       <h1>The Gallery of Horns</h1>
       <select id="keywordFilter" name="keywordFilter">
-        <option id="defaultOpt" value="null">Filter by Keyword</option>
+        <option id="keywordDefault" value="null">Filter by Keyword</option>
       </select>
-      <select name="imgFilter">
-        <option value="null">Filter by Number of Horns</option>
-        <option value="1">1 Horn</option>
-        <option value="2">2 Horns</option>
-        <option value="3">3 Horns</option>
-        <option value="100">100 Horns</option>
+      <select id="imgFilter" name="imgFilter">
+        <option id="imgDefault" value="null">Filter by Number of Horns</option>
       </select>
+      <button type="reset" name="resetButton">Reset</button>
     </header>
     <main>
       <section id="photo-template">
