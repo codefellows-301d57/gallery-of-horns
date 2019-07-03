@@ -22,4 +22,4 @@ Start time: 10:15am
 
 Finish time: 11:45am
 
-Actual time needed to complete: ______
+Actual time needed to complete: 45min
