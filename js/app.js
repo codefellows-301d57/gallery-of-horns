@@ -44,7 +44,7 @@ Images.prototype.renderImgs = function (){
 
 //Renders Img to DOM
 Images.getAllImagesFromFile = function(){
-  const filePath = '/data/page-1.json';
+  const filePath = 'data/page-1.json';
   const fileType = 'json';
 
   $.get(filePath, fileType).then(imageJSON => {
