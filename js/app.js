@@ -3,6 +3,7 @@
 
 //Globals
 const allImagesArr = [];
+const keywordArr = [];
 
 const Images = function(image_url, title, description, keyword, horns){
   this.image_url = image_url;
@@ -14,7 +15,7 @@ const Images = function(image_url, title, description, keyword, horns){
 };
 
 Images.prototype.renderImgs = function (){
-  const $newImg = $('<section></section>');
+  const $newImg = $('<section></section>').attr('alt', this.keyword);
   const imgTemplateHtml = $('#photo-template').html();
 
   //Inserts html into the element / Returns the $newImg jquery Obj
@@ -49,10 +50,20 @@ Images.getAllImagesFromFile = function(){
   $.get(filePath, fileType).then(imageJSON => {
     imageJSON.forEach(hornImage => {
       new Images(hornImage.image_url, hornImage.title, hornImage.description, hornImage.keyword, hornImage.horns);
+      if(!keywordArr.includes(hornImage.keyword)){
+        keywordArr.push(hornImage.keyword);
+        console.log(keywordArr);
+      }
     });
 
     allImagesArr.forEach(hornImage => {
       hornImage.renderImgs();
+    });
+
+    $.each(keywordArr, function(index, text){
+      $('#keywordFilter').append(
+        $('<option></option>').html(text).attr('value', text)
+      );
     });
   });
 };
@@ -60,10 +71,12 @@ Images.getAllImagesFromFile = function(){
 //Filters by Keyword
 $('select[name="keywordFilter"]').on('change', function(){
   let $selection = $(this).val();
+  $('section').hide();
   $('h2').hide();
   $('img').hide();
   $('p').hide();
 
+  $(`section[alt="${$selection}"]`).show();
   $(`h2[alt="${$selection}"]`).show();
   $(`img[alt="${$selection}"]`).show();
   $(`p[alt="${$selection}"]`).show();
@@ -80,5 +93,8 @@ $('select[name="imgFilter"]').on('change', function(){
   $(`img[data-flavor="${$selection}"]`).show();
   $(`p[data-flavor="${$selection}"]`).show();
 });
+
+// Hide empty section within main
+$('#photo-template').hide();
 
 Images.getAllImagesFromFile();

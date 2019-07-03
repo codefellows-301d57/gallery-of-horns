@@ -22,4 +22,15 @@ Start time: 10:15am
 
 Finish time: 11:45am
 
-Actual time needed to complete: 45min
+Actual time needed to complete: 45 min
+
+# Feature 3
+Number and name of feature: Feature 1: Style the Application
+
+Estimate of time needed to complete: 2:00hr
+
+Start time: 11:00am
+
+Finish time: 1:00pm
+
+Actual time needed to complete: 1 hr 45 min
