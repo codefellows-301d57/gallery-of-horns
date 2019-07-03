@@ -4,6 +4,7 @@
 //Globals
 const allImagesArr = [];
 const keywordArr = [];
+const hornsArr = [];
 
 const Images = function(image_url, title, description, keyword, horns){
   this.image_url = image_url;
@@ -15,7 +16,7 @@ const Images = function(image_url, title, description, keyword, horns){
 };
 
 Images.prototype.renderImgs = function (){
-  const $newImg = $('<section></section>').attr('alt', this.keyword);
+  const $newImg = $('<section></section>').attr({'alt': this.keyword, 'data-flavor': this.horns});
   const imgTemplateHtml = $('#photo-template').html();
 
   //Inserts html into the element / Returns the $newImg jquery Obj
@@ -44,7 +45,7 @@ Images.prototype.renderImgs = function (){
 
 //Renders Img to DOM
 Images.getAllImagesFromFile = function(){
-  const filePath = '/data/page-1.json';
+  const filePath = 'data/page-1.json';
   const fileType = 'json';
 
   $.get(filePath, fileType).then(imageJSON => {
@@ -52,7 +53,9 @@ Images.getAllImagesFromFile = function(){
       new Images(hornImage.image_url, hornImage.title, hornImage.description, hornImage.keyword, hornImage.horns);
       if(!keywordArr.includes(hornImage.keyword)){
         keywordArr.push(hornImage.keyword);
-        console.log(keywordArr);
+      }
+      if(!hornsArr.includes(hornImage.horns)){
+        hornsArr.push(hornImage.horns);
       }
     });
 
@@ -63,6 +66,12 @@ Images.getAllImagesFromFile = function(){
     $.each(keywordArr, function(index, text){
       $('#keywordFilter').append(
         $('<option></option>').html(text).attr('value', text)
+      );
+    });
+
+    $.each(hornsArr, function(index, text){
+      $('#imgFilter').append(
+        $('<option></option>').html(text + ' Horns').attr('value', text)
       );
     });
   });
@@ -85,13 +94,20 @@ $('select[name="keywordFilter"]').on('change', function(){
 //Filters by Number of Horns
 $('select[name="imgFilter"]').on('change', function(){
   let $selection = $(this).val();
+  console.log($selection);
+  $('section').hide();
   $('h2').hide();
   $('img').hide();
   $('p').hide();
 
+  $(`section[data-flavor="${$selection}"]`).show();
   $(`h2[data-flavor="${$selection}"]`).show();
   $(`img[data-flavor="${$selection}"]`).show();
   $(`p[data-flavor="${$selection}"]`).show();
+});
+
+$('button[name="resetButton"]').click(function(){
+  location.reload();
 });
 
 // Hide empty section within main
