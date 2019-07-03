@@ -2,6 +2,9 @@
 ## Partners
 * Pair programming Nicholas Paro and Melfi Perez
 
+## Resources
+* Reset button: https://stackoverflow.com/questions/5404839/how-can-i-refresh-a-page-with-jquery
+
 # Feature 1
 Number and name of feature: Feature 1: Display Imgs
 
