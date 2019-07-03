@@ -33,4 +33,4 @@ Start time: 11:00am
 
 Finish time: 1:00pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 12:45pm
