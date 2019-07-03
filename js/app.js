@@ -15,7 +15,7 @@ const Images = function(image_url, title, description, keyword, horns){
 };
 
 Images.prototype.renderImgs = function (){
-  const $newImg = $('<section></section>').attr('alt', this.keyword);
+  const $newImg = $('<section></section>').attr({'alt': this.keyword, 'data-flavor': this.horns});
   const imgTemplateHtml = $('#photo-template').html();
 
   //Inserts html into the element / Returns the $newImg jquery Obj
@@ -85,10 +85,13 @@ $('select[name="keywordFilter"]').on('change', function(){
 //Filters by Number of Horns
 $('select[name="imgFilter"]').on('change', function(){
   let $selection = $(this).val();
+  console.log($selection);
+  $('section').hide();
   $('h2').hide();
   $('img').hide();
   $('p').hide();
 
+  $(`section[data-flavor="${$selection}"]`).show();
   $(`h2[data-flavor="${$selection}"]`).show();
   $(`img[data-flavor="${$selection}"]`).show();
   $(`p[data-flavor="${$selection}"]`).show();
