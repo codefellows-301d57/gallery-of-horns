@@ -4,6 +4,7 @@
 //Globals
 const allImagesArr = [];
 const keywordArr = [];
+const hornsArr = [];
 
 const Images = function(image_url, title, description, keyword, horns){
   this.image_url = image_url;
@@ -52,7 +53,9 @@ Images.getAllImagesFromFile = function(){
       new Images(hornImage.image_url, hornImage.title, hornImage.description, hornImage.keyword, hornImage.horns);
       if(!keywordArr.includes(hornImage.keyword)){
         keywordArr.push(hornImage.keyword);
-        console.log(keywordArr);
+      }
+      if(!hornsArr.includes(hornImage.horns)){
+        hornsArr.push(hornImage.horns);
       }
     });
 
@@ -63,6 +66,12 @@ Images.getAllImagesFromFile = function(){
     $.each(keywordArr, function(index, text){
       $('#keywordFilter').append(
         $('<option></option>').html(text).attr('value', text)
+      );
+    });
+
+    $.each(hornsArr, function(index, text){
+      $('#imgFilter').append(
+        $('<option></option>').html(text + ' Horns').attr('value', text)
       );
     });
   });
@@ -95,6 +104,10 @@ $('select[name="imgFilter"]').on('change', function(){
   $(`h2[data-flavor="${$selection}"]`).show();
   $(`img[data-flavor="${$selection}"]`).show();
   $(`p[data-flavor="${$selection}"]`).show();
+});
+
+$('button[name="resetButton"]').click(function(){
+  location.reload();
 });
 
 // Hide empty section within main
