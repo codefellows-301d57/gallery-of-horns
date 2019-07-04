@@ -4,6 +4,7 @@
 
 ## Resources
 * Reset button: https://stackoverflow.com/questions/5404839/how-can-i-refresh-a-page-with-jquery
+* Sort double-ternary: https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 
 # Feature 1
 Number and name of feature: Feature 1: Display Imgs
