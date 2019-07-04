@@ -46,11 +46,14 @@ Images.prototype.renderImgs = function() {
   $('main').append($newImg);
 };
 
-const sorter = () => {
-  sortedImgArr = allImagesArr.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+const sorter = (selection) => {
+  if(selection === 'title'){
+    sortedImgArr = allImagesArr.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+  } else if(selection === 'horns'){
+    sortedImgArr = allImagesArr.sort((a,b) => (a.horns > b.horns) ? 1 : ((b.horns > a.horns) ? -1 : 0));
+  }
   sortedImgArr.forEach(titleSort => {
-    // titleSort.renderImgs();
-    console.log(titleSort);
+    titleSort.renderImgs();
   })
 };
 
@@ -73,9 +76,7 @@ const initializer = imageJSON => {
     }
   });
 
-  allImagesArr.forEach(hornImage => {
-    hornImage.renderImgs();
-  });
+  allImagesArr.forEach(hornImage => hornImage.renderImgs());
 
   optionMaker('#keywordFilter', keywordArr);
   optionMaker('#imgFilter', hornsArr);
@@ -113,18 +114,13 @@ $('select[name="imgFilter"]').on('change', function(){
 $('select[name="sortFilter"]').on('change', function(){
   let $selection = $(this).val();
   console.log($selection);
-  if($selection === 'title'){
-    sorter();
-    $('section').hide();
-    $('h2').hide();
-    $('img').hide();
-    $('p').hide();
+  $('main').empty();
+  sorter($selection);
 
-    $('section').show();
-    $('h2').show();
-    $('img').show();
-    $('p').show();
-  }
+  $('section').show();
+  $('h2').show();
+  $('img').show();
+  $('p').show();
 })
 
 $('button[name="resetButton"]').click(function(){
