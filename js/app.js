@@ -23,7 +23,6 @@ Images.prototype.renderImgs = function() {
 
   //Inserts html into the element / Returns the $newImg jquery Obj
   $newImg.html(imgTemplateHtml);
-  // $newImg.html();
 
   //Gets our HTML elements
   $newImg.find('h2').text(this.title);
