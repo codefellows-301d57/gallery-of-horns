@@ -5,6 +5,8 @@
 const allImagesArr = [];
 const keywordArr = [];
 const hornsArr = [];
+const sortByArr = ['title', 'horns'];
+let sortedImgArr = [];
 
 const Images = function(image_url, title, description, keyword, horns){
   this.image_url = image_url;
@@ -15,17 +17,19 @@ const Images = function(image_url, title, description, keyword, horns){
   allImagesArr.push(this);
 };
 
-Images.prototype.renderImgs = function (){
-  const $newImg = $('<section></section>').attr({'alt': this.keyword, 'data-flavor': this.horns});
+Images.prototype.renderImgs = function() {
+  const $newImg = $('<section></section>').attr({'alt': this.keyword, 'name': this.title, 'data-flavor': this.horns});
   const imgTemplateHtml = $('#photo-template').html();
 
   //Inserts html into the element / Returns the $newImg jquery Obj
   $newImg.html(imgTemplateHtml);
+  // $newImg.html();
 
   //Gets our HTML elements
   $newImg.find('h2').text(this.title);
   $newImg.find('h2').attr({
     'alt': this.keyword,
+    'name': this.title,
     'data-flavor': this.horns
   });
   $newImg.find('img').attr({
@@ -40,42 +44,44 @@ Images.prototype.renderImgs = function (){
   });
 
   $('main').append($newImg);
-
 };
 
-//Renders Img to DOM
-Images.getAllImagesFromFile = function(){
-  const filePath = 'data/page-1.json';
-  const fileType = 'json';
+const sorter = (selection) => {
+  if(selection === 'title'){
+    sortedImgArr = allImagesArr.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+  } else if(selection === 'horns'){
+    sortedImgArr = allImagesArr.sort((a,b) => (a.horns > b.horns) ? 1 : ((b.horns > a.horns) ? -1 : 0));
+  }
+  sortedImgArr.forEach(titleSort => {
+    titleSort.renderImgs();
+  })
+};
 
-  $.get(filePath, fileType).then(imageJSON => {
-    imageJSON.forEach(hornImage => {
-      new Images(hornImage.image_url, hornImage.title, hornImage.description, hornImage.keyword, hornImage.horns);
-      if(!keywordArr.includes(hornImage.keyword)){
-        keywordArr.push(hornImage.keyword);
-      }
-      if(!hornsArr.includes(hornImage.horns)){
-        hornsArr.push(hornImage.horns);
-      }
-    });
-
-    allImagesArr.forEach(hornImage => {
-      hornImage.renderImgs();
-    });
-
-    $.each(keywordArr, function(index, text){
-      $('#keywordFilter').append(
-        $('<option></option>').html(text).attr('value', text)
-      );
-    });
-
-    $.each(hornsArr, function(index, text){
-      $('#imgFilter').append(
-        $('<option></option>').html(text + ' Horns').attr('value', text)
-      );
-    });
+const optionMaker = (idName, arr) => {
+  $.each(arr, (index, text) => {
+    $(idName).append(
+      $('<option></option>').html(text).attr('value', text)
+    );
   });
 };
+
+const initializer = imageJSON => {
+  imageJSON.forEach(hornImage => {
+    new Images(hornImage.image_url, hornImage.title, hornImage.description, hornImage.keyword, hornImage.horns);
+    if(!keywordArr.includes(hornImage.keyword)){
+      keywordArr.push(hornImage.keyword);
+    }
+    if(!hornsArr.includes(hornImage.horns)){
+      hornsArr.push(hornImage.horns);
+    }
+  });
+
+  allImagesArr.forEach(hornImage => hornImage.renderImgs());
+
+  optionMaker('#keywordFilter', keywordArr);
+  optionMaker('#imgFilter', hornsArr);
+  optionMaker('#sortFilter', sortByArr);
+}
 
 //Filters by Keyword
 $('select[name="keywordFilter"]').on('change', function(){
@@ -94,7 +100,6 @@ $('select[name="keywordFilter"]').on('change', function(){
 //Filters by Number of Horns
 $('select[name="imgFilter"]').on('change', function(){
   let $selection = $(this).val();
-  console.log($selection);
   $('section').hide();
   $('h2').hide();
   $('img').hide();
@@ -106,9 +111,29 @@ $('select[name="imgFilter"]').on('change', function(){
   $(`p[data-flavor="${$selection}"]`).show();
 });
 
+$('select[name="sortFilter"]').on('change', function(){
+  let $selection = $(this).val();
+  console.log($selection);
+  $('main').empty();
+  sorter($selection);
+
+  $('section').show();
+  $('h2').show();
+  $('img').show();
+  $('p').show();
+})
+
 $('button[name="resetButton"]').click(function(){
   location.reload();
 });
+
+//Renders Img to DOM
+Images.getAllImagesFromFile = function(){
+  const filePath = 'data/page-1.json';
+  const fileType = 'json';
+
+  $.get(filePath, fileType).then(initializer);
+};
 
 // Hide empty section within main
 $('#photo-template').hide();
