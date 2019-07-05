@@ -32,28 +32,28 @@
 ## Part 02
 ### Feature 1
 * Number and name of feature: Feature 1: Pagination
-* Estimate of time needed to complete: ____
-* Start time: _____
-* Finish time: _____
-* Actual time needed to complete: _____
+* Estimate of time needed to complete: 1:00hr
+* Start time: 12:00pm
+* Finish time: 1:00pm
+* Actual time needed to complete: 35min
 
 ### Feature 2
 * Number and name of feature: Feature 1: Templating
-* Estimate of time needed to complete: ____
-* Start time: _____
-* Finish time: _____
-* Actual time needed to complete: _____
+* Estimate of time needed to complete: 3:00hr
+* Start time: 12:35pm
+* Finish time: 3:35pm
+* Actual time needed to complete: 3hr
 
 ### Feature 3
 * Number and name of feature: Feature 1: Style with Flexbox
-* Estimate of time needed to complete: ____
-* Start time: _____
-* Finish time: _____
-* Actual time needed to complete: _____
+* Estimate of time needed to complete: 0hr, completed as stretch goal of Part 01
+* Start time: n/a
+* Finish time: n/a
+* Actual time needed to complete: 30min
 
 ### Feature 4
 * Number and name of feature: Feature 1: Sort the Images
-* Estimate of time needed to complete: ____
-* Start time: _____
-* Finish time: _____
-* Actual time needed to complete: _____
+* Estimate of time needed to complete: 0hr, completed as stretch goal of Part 01
+* Start time: n/a
+* Finish time: n/a
+* Actual time needed to complete: 1hr
