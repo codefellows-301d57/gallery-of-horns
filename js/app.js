@@ -115,13 +115,13 @@ Images.getAllImagesFromFile = (fileName) => {
 };
 
 $('button[class="page-1"]').click(function(){
+  allImagesArr.length = 0;
   $('main').empty();
-  Images.allImagesArr = [];
   Images.getAllImagesFromFile('data/page-1.json')
 });
 
 $('button[class="page-2"]').click(function(){
+  allImagesArr.length = 0;
   $('main').empty();
-  Images.allImagesArr = [];
   Images.getAllImagesFromFile('data/page-2.json')
 });
