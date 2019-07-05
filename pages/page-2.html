@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Gallery of Horns</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Rancho|Rock+Salt|Rubik+Mono+One|Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layouts.css">
+    <link rel="stylesheet" href="/css/modules.css">
+  </head>
+  <body>
+    <header>
+      <h1>The Gallery of Horns</h1>
+      <a href="/index.html"><button>Pagination 1</button></a>
+      <button type="reset" name="resetButton">Reset to Default</button>
+      <a href="pages/page-2.html"><button>Pagination 2</button></a>
+      <br>
+      <select class="keywordFilter"></select>
+      <select class="imgFilter"></select>
+      <select class="sortFilter"></select>
+    </header>
+
+    <main class="content-placeholder"></main>
+
+    <footer>
+      &copy; 2018 Code Fellows
+      <br>
+      <br>
+      &diams;Melfi & Nick&trade;&diams;
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.js"></script>
+
+    <script id="option-template" type="text/x-handlebars-template">
+      {{#each this}}
+      <option value={{this}}>{{this}}</option>
+      {{/each}}
+    </script>
+    <script id="section-template" type="text/x-handlebars-template">
+      {{#each this}}
+      <section name={{title}} alt={{keyword}} data-flavor={{horns}}>
+        <h2 alt={{keyword}} data-flavor={{horns}}>
+          {{title}}
+        </h2>
+        <img src={{image_url}} alt={{keyword}} data-flavor={{horns}}>
+        <p alt={{keyword}} data-flavor={{horns}}>
+          {{description}}
+        </p>
+      </section>
+      {{/each}}
+    </script>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/page-2.js"></script>
+  </body>
+</html>
