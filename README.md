@@ -1,4 +1,4 @@
-# lab-02
+# The Gallery of Horns
 ## Partners
 * Pair programming Nicholas Paro and Melfi Perez
 
