@@ -1,11 +1,22 @@
 header{
-  width: 980px;
+  width: 90%;
   margin: auto;
   text-align: center;
 }
 
+body{
+  background-color: #301d5780;
+}
+
+main{
+  display: flex;
+  margin: auto;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
 footer{
-  width: 980px;
+  width: 90%;
   margin: auto;
   text-align: center;
   padding: 20px;

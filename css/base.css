@@ -1,15 +1,3 @@
 * {
   box-sizing: border-box;
 }
-
-body{
-  background-color: #301d5780;
-}
-
-main{
-  display: flex;
-  margin: auto;
-  width: 980px;
-  flex-wrap: wrap;
-}
-

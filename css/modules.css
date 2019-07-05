@@ -1,7 +1,30 @@
+@media only screen and (max-width: 649px){
+  section{ width: 50% }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 768px){
+  section{ width: 33% }
+}
+
+@media only screen and (min-width: 769px){
+  main{ width: 80% }
+  section{ width: 20% }
+}
+
 h1{
   font-size: 3em;
+  margin-top: 20px;
   padding: 10px;
   font-family: 'Luckiest Guy', cursive;
+}
+
+button{
+  margin-bottom: 1%;
+  padding: 5px 10px;
+  background-color: #333;
+  color: whitesmoke;
+  font-family: 'Rancho', cursive;
+  font-size: 1em;
 }
 
 select{
@@ -14,7 +37,6 @@ select{
 }
 
 section{
-  width: 20%;
   display: inline-block;
   padding: 10px;
 }
