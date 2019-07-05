@@ -113,3 +113,15 @@ Images.getAllImagesFromFile = (fileName) => {
   const fileType = 'json';
   $.get(filePath, fileType).then(initializer);
 };
+
+$('button[class="page-1"]').click(function(){
+  $('main').empty();
+  Images.allImagesArr = [];
+  Images.getAllImagesFromFile('data/page-1.json')
+});
+
+$('button[class="page-2"]').click(function(){
+  $('main').empty();
+  Images.allImagesArr = [];
+  Images.getAllImagesFromFile('data/page-2.json')
+});
