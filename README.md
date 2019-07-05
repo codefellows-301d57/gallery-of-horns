@@ -1,8 +1,9 @@
 # The Gallery of Horns
-## Partners
+
+### Partners
 * Pair programming Nicholas Paro and Melfi Perez
 
-## Resources
+### Resources
 * Reset button: https://stackoverflow.com/questions/5404839/how-can-i-refresh-a-page-with-jquery
 * Sort double-ternary: https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 
